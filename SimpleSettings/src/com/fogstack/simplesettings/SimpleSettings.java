@@ -1,0 +1,42 @@
+package com.fogstack.simplesettings;
+
+import android.content.Context;
+import android.util.Log;
+
+public class SimpleSettings {
+	Context ctx;
+	
+	private SimpleSettings(Context ctx)
+	{
+		this.ctx = ctx;
+	}
+	
+	public static SimpleSettings getInstance(Context ctx) { return new SimpleSettings(ctx); }
+	
+	public void save(String name, String value) 
+	{
+		SimpleSettingsDAO.getInstance(ctx).save(name, value);
+	}
+	
+	public void save(String name, int value) 
+	{
+		SimpleSettingsDAO.getInstance(ctx).save(name, value);
+	}
+	
+	public String getString(String name) 
+	{
+		return SimpleSettingsDAO.getInstance(ctx).getString(name);
+	}
+	
+	public int getInt(String name, int defaultValue) 
+	{
+		try {
+			return Integer.parseInt(getString(name));
+		} catch (NumberFormatException e) {
+			// Setting not found or mis-formatted
+			Log.e("SimpleSettings", "Unable to retrieve int setting", e);
+		}
+		
+		return defaultValue;
+	}
+}
