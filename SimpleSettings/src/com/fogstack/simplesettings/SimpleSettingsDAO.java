@@ -80,8 +80,6 @@ import android.util.Log;
      */
     public void save(String key, Object value)
     {
-    	open();
-    	
     	String currentValue = getString(key);
     	if(currentValue == null)
     	{
@@ -96,8 +94,10 @@ import android.util.Log;
      * @param key
      * @param value
      */
-    public void create(String key, Object value)
+    private void create(String key, Object value)
     {
+    	open();
+    	
         try {
 			ContentValues initialValues = new ContentValues();
 			initialValues.put(SETTINGS_TABLE_KEY_KEY, key);
