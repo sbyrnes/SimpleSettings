@@ -143,7 +143,6 @@ import android.util.Log;
     	
     	try 
     	{
-        	Log.i("SimpleSettings", "Fetching user profile...");
             Cursor cursor =  mDb.query(SETTINGS_TABLE_NAME, 
     			        				 new String[] {SETTINGS_TABLE_KEY_VALUE}, 
     			        				 SETTINGS_TABLE_KEY_KEY +"=?", 
